@@ -1,0 +1,185 @@
+=== DEBUG ===
+Total CSV columns: 51
+  [0] Timestamp
+  [1] 1. I found it hard to wind down
+  [2] 2. I was aware of dryness of my mouth
+  [3] 3. I couldn’t seem to experience any positive feeling at all
+  [4] 4. I experienced breathing difficulty (eg, excessively rapid
+  [5] 5. I found it difficult to work up the initiative to do thin
+  [6] 6. I tended to over-react to situations
+  [7] 7. I experienced trembling (eg, in the hands)
+  [8] 8. I felt that I was using a lot of nervous energy
+  [9] 9. I was worried about situations in which I might panic and
+  [10] 10. I felt that I had nothing to look forward to
+  [11] 11. I found myself getting agitated
+  [12] 12. I found it difficult to relax
+  [13] 13. I felt down-hearted and blue
+  [14] 14. I was intolerant of anything that kept me from getting o
+  [15] 15. I felt I was close to panic
+  [16] 16. I was unable to become enthusiastic about anything
+  [17] 17. I felt I wasn’t worth much as a person
+  [18] 18. I felt that I was rather touchy
+  [19] 19. I was aware of the action of my heart in the absence of 
+  [20] 20. I felt scared without any good reason
+  [21] 21. I felt that life was meaningless
+  [22] 1. My friends expect me to be constantly available
+online
+  [23] 2. On top of the other things I must do, keeping up with
+not
+  [24] 3. I am nervous about how people will respond to my
+posts an
+  [25] 4. I feel socially unavailable when I do not have my
+phone
+  [26] 5. I fear my friends are having more rewarding
+experiences t
+  [27] 6. I have to check too many notifications
+  [28] 7. I must have my phone with me to know what is going
+on
+  [29] 8. For my friends, it is important that I am constantly
+avai
+  [30] 9. I feel anxious about how others will respond when I
+share
+  [31] 10. I fear that others have more rewarding experiences
+than 
+  [32] 11. I feel overwhelmed with the flow of
+messages/notificatio
+  [33] 12.  I feel lost or “naked” without my phone
+  [34] 13. I get worried when I find out my friends are having fun 
+  [35] 14. It feels like there is always a reminder – like a flashi
+  [36] 15. I am constantly checking my phone for
+messages/notificat
+  [37] 16. Most of my friends approve of me being constantly
+availa
+  [38] 17. I feel nervous after I share a post or photo to see how 
+  [39] 18. I feel a social obligation to be constantly available
+on
+  [40] 19. I feel stress because I must sift through a lot of
+unimp
+  [41] 20. I put a lot of effort into composing messages and
+posts 
+  [42] 21. I get anxious when I don’t know what my friends are
+up t
+  [43] 22. I put a lot of effort into finding or creating a photo t
+  [44] 23. I spend too much time responding to
+notifications/messag
+  [45] 24. I feel nervous about how others will respond when I
+post
+  [46] Score1
+  [47] Score 2
+  [48] Hour
+  [49] Minute
+  [50] Unnamed: 50
+=== END DEBUG ===
+============================================================
+1. DESCRIPTIVE STATISTICS
+============================================================
+                   Mean     SD  Median   Min    Max
+DASS_total        44.66  12.87    44.0  23.0   74.0
+DASS_depression    1.70   3.97     0.0   0.0   20.0
+DASS_anxiety       1.60   3.96     0.0   0.0   21.0
+DASS_stress        2.02   4.23     0.0   0.0   20.0
+DSS_total         59.86  20.63    58.0  24.0  103.0
+DSS_availability   3.98   8.01     0.0   0.0   32.0
+DSS_fomo           2.24   4.48     0.0   0.0   19.0
+DSS_approval       3.27   6.74     0.0   0.0   30.0
+DSS_overload       3.96   8.25     0.0   0.0   35.0
+
+Time block distribution:
+time_block
+Afternoon (12–17)    12
+Morning (5–12)        9
+Evening (17–21)       5
+Night (21–5)          3
+
+============================================================
+2. INTERNAL CONSISTENCY (Cronbach's α)
+============================================================
+  DASS-21 Total          α = 0.929  (excellent)
+  DASS Stress            α = 0.749  (acceptable)
+  DASS Anxiety           α = 0.908  (excellent)
+  DASS Depression        α = 0.893  (good)
+  DSS-24 Total           α = 0.947  (excellent)
+  DSS Availability       α = 0.842  (good)
+  DSS FOMO               α = 0.814  (good)
+  DSS Approval           α = 0.889  (good)
+  DSS Overload           α = 0.910  (excellent)
+
+============================================================
+3. NORMALITY (Shapiro-Wilk, α=0.05)
+============================================================
+  DASS_total       W=0.971, p=0.5941  → Normal
+  DSS_total        W=0.947, p=0.1538  → Normal
+
+============================================================
+4. TIME-OF-DAY CORRELATION (circular statistics)
+============================================================
+  [Time is circular: midnight wraps around, so we use
+   sine/cosine components of the 24h cycle]
+
+  Scale                   rho_sin    p_sin  rho_cos    p_cos
+  ---------------------- -------- -------- -------- --------
+  DASS_total               -0.028   0.8859     -0.239   0.2119
+  DASS_depression          -0.083   0.6675     -0.140   0.4702
+  DASS_anxiety             -0.110   0.5708     -0.250   0.1905
+  DASS_stress              -0.028   0.8872     -0.246   0.1986
+  DSS_total                -0.146   0.4493     -0.167   0.3876
+  DSS_availability          0.001   0.9970     -0.219   0.2544
+  DSS_fomo                 -0.368   0.0493 *   -0.154   0.4251
+  DSS_approval             -0.179   0.3529     -0.096   0.6186
+  DSS_overload             -0.044   0.8195     -0.112   0.5623
+
+  * p < 0.05
+
+============================================================
+5. SCORE BY TIME BLOCK (Kruskal-Wallis)
+============================================================
+
+  DASS_total:
+    Kruskal-Wallis H=0.642, p=0.8867
+    Afternoon (12–17)      n=12  median=46.0  IQR=39.5–51.2
+    Evening (17–21)        n=5  median=38.0  IQR=38.0–45.0
+    Morning (5–12)         n=9  median=44.0  IQR=30.0–56.0
+    Night (21–5)           n=3  median=39.0  IQR=36.0–45.5
+
+  DSS_total:
+    Kruskal-Wallis H=0.783, p=0.8536
+    Afternoon (12–17)      n=12  median=61.0  IQR=53.2–66.8
+    Evening (17–21)        n=5  median=47.0  IQR=46.0–66.0
+    Morning (5–12)         n=9  median=48.0  IQR=40.0–67.0
+    Night (21–5)           n=3  median=53.0  IQR=50.5–73.0
+
+============================================================
+6. DASS-21 ↔ DSS-24 CORRELATIONS (Spearman)
+============================================================
+
+                               DSS-total  DSS-availability        DSS-fomo    DSS-approval    DSS-overload
+  DASS-total               0.644* (p=0.000)   0.668* (p=0.000)   0.578* (p=0.001)   0.372* (p=0.047)   0.540* (p=0.003)
+  DASS-depression          0.502* (p=0.005)   0.978* (p=0.000)   0.975* (p=0.000)   0.971* (p=0.000)   0.973* (p=0.000)
+  DASS-anxiety             0.647* (p=0.000)   0.962* (p=0.000)   0.965* (p=0.000)   0.960* (p=0.000)   0.954* (p=0.000)
+  DASS-stress              0.693* (p=0.000)   0.993* (p=0.000)   0.990* (p=0.000)   0.989* (p=0.000)   0.993* (p=0.000)
+
+  * p < 0.05
+
+============================================================
+7. OUTLIER DETECTION (Z-score |z| > 2.5 on either scale)
+============================================================
+  11 outlier(s) found:
+  Row 1: DASS=26 (z=-3.11), DSS=38 (z=-2.27), Hour=10
+  Row 2: DASS=74 (z=4.89), DSS=103 (z=4.49), Hour=11
+  Row 7: DASS=33 (z=-1.94), DSS=34 (z=-2.69), Hour=20
+  Row 8: DASS=39 (z=-0.94), DSS=93 (z=3.45), Hour=21
+  Row 12: DASS=23 (z=-3.61), DSS=24 (z=-3.73), Hour=14
+  Row 15: DASS=38 (z=-1.11), DSS=87 (z=2.82), Hour=19
+  Row 16: DASS=70 (z=4.23), DSS=98 (z=3.97), Hour=10
+  Row 19: DASS=64 (z=3.23), DSS=55 (z=-0.51), Hour=12
+  Row 23: DASS=63 (z=3.06), DSS=96 (z=3.76), Hour=15
+  Row 25: DASS=28 (z=-2.78), DSS=40 (z=-2.07), Hour=10
+  Row 26: DASS=34 (z=-1.78), DSS=34 (z=-2.69), Hour=10
+
+[Saved] fig1_distributions.png
+[Saved] fig2_scatter_dass_dss.png
+[Saved] fig3_subscale_heatmap.png
+[Saved] fig4_scores_by_time.png
+[Saved] fig5_radar_subscales.png
+
+✓ Analysis complete.
