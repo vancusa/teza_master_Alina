@@ -34,11 +34,10 @@ DSS_OVERLOAD       = [2, 6, 11, 14, 15, 19, 23]   # Information/notification ove
 df = pd.read_csv(CSV_PATH)
 df.columns = df.columns.str.strip()
 
-print("=== DEBUG ===")
-print(f"Total CSV columns: {len(df.columns)}")
-for i, col in enumerate(df.columns):
-    print(f"  [{i}] {col[:60]}")
-print("=== END DEBUG ===")
+# Keep only completed responses. In this export, many extra parsed rows can appear
+# from multi-line text; valid survey rows are those with a numeric DSS total.
+if 'Score 2' in df.columns:
+    df = df[pd.to_numeric(df['Score 2'], errors='coerce').notna()].copy()
 
 # Identify item columns by position (columns 1-21 = DASS, 22-45 = DSS)
 # Column 0 = Timestamp, then 21 DASS items, then 24 DSS items, then Score1, Score2, Hour, Minute
@@ -56,17 +55,18 @@ dss_item_list  = dss_items.columns.tolist()
 # Convert to standard DASS item scoring (0–3) so totals/subscales are coherent,
 # including the radar normalization in Figure 5.
 dass_items_adj = dass_items - 1  # convert 1–4 → 0–3
+dss_items_adj = dss_items - 1    # convert 1–5 → 0–4
 
 # Use adjusted DASS items for DASS totals; keep DSS totals from provided score if available.
-df['DASS_total'] = dass_items_adj.sum(axis=1)
+df['DASS_total'] = dass_items_adj.sum(axis=1, min_count=1)
 if 'Score 2' in df.columns:
     df['DSS_total'] = pd.to_numeric(df['Score 2'], errors='coerce')
 else:
-    df['DSS_total'] = dss_items.sum(axis=1)
+    df['DSS_total'] = dss_items.sum(axis=1, min_count=1)
 
-df['DASS_stress']     = dass_items_adj[[dass_item_list[i-1] for i in DASS_STRESS]].sum(axis=1)
-df['DASS_anxiety']    = dass_items_adj[[dass_item_list[i-1] for i in DASS_ANXIETY]].sum(axis=1)
-df['DASS_depression'] = dass_items_adj[[dass_item_list[i-1] for i in DASS_DEPRESSION]].sum(axis=1)
+df['DASS_stress']     = dass_items_adj[[dass_item_list[i-1] for i in DASS_STRESS]].sum(axis=1, min_count=1)
+df['DASS_anxiety']    = dass_items_adj[[dass_item_list[i-1] for i in DASS_ANXIETY]].sum(axis=1, min_count=1)
+df['DASS_depression'] = dass_items_adj[[dass_item_list[i-1] for i in DASS_DEPRESSION]].sum(axis=1, min_count=1)
 
 
 # Compute DASS subscales (multiply by 2 per standard DASS-21 scoring)
@@ -75,10 +75,10 @@ df['DASS_depression'] = dass_items_adj[[dass_item_list[i-1] for i in DASS_DEPRES
 #df['DASS_depression']  = dass_items[[dass_item_list[i-1] for i in DASS_DEPRESSION]].sum(axis=1)
 
 # Compute DSS subscales
-df['DSS_availability'] = dss_items[[dss_item_list[i-1] for i in DSS_AVAILABILITY]].sum(axis=1)
-df['DSS_fomo']         = dss_items[[dss_item_list[i-1] for i in DSS_FOMO]].sum(axis=1)
-df['DSS_approval']     = dss_items[[dss_item_list[i-1] for i in DSS_APPROVAL]].sum(axis=1)
-df['DSS_overload']     = dss_items[[dss_item_list[i-1] for i in DSS_OVERLOAD]].sum(axis=1)
+df['DSS_availability'] = dss_items_adj[[dss_item_list[i-1] for i in DSS_AVAILABILITY]].sum(axis=1, min_count=1)
+df['DSS_fomo']         = dss_items_adj[[dss_item_list[i-1] for i in DSS_FOMO]].sum(axis=1, min_count=1)
+df['DSS_approval']     = dss_items_adj[[dss_item_list[i-1] for i in DSS_APPROVAL]].sum(axis=1, min_count=1)
+df['DSS_overload']     = dss_items_adj[[dss_item_list[i-1] for i in DSS_OVERLOAD]].sum(axis=1, min_count=1)
 
 # Time of day
 df['Hour']   = pd.to_numeric(df['Hour'], errors='coerce')
@@ -128,11 +128,11 @@ scales = {
     'DASS Stress':      dass_items_adj.iloc[:, [i-1 for i in DASS_STRESS]],
     'DASS Anxiety':     dass_items_adj.iloc[:, [i-1 for i in DASS_ANXIETY]],
     'DASS Depression':  dass_items_adj.iloc[:, [i-1 for i in DASS_DEPRESSION]],
-    'DSS-24 Total':     dss_items,
-    'DSS Availability': dss_items.iloc[:, [i-1 for i in DSS_AVAILABILITY]],
-    'DSS FOMO':         dss_items.iloc[:, [i-1 for i in DSS_FOMO]],
-    'DSS Approval':     dss_items.iloc[:, [i-1 for i in DSS_APPROVAL]],
-    'DSS Overload':     dss_items.iloc[:, [i-1 for i in DSS_OVERLOAD]],
+    'DSS-24 Total':     dss_items_adj,
+    'DSS Availability': dss_items_adj.iloc[:, [i-1 for i in DSS_AVAILABILITY]],
+    'DSS FOMO':         dss_items_adj.iloc[:, [i-1 for i in DSS_FOMO]],
+    'DSS Approval':     dss_items_adj.iloc[:, [i-1 for i in DSS_APPROVAL]],
+    'DSS Overload':     dss_items_adj.iloc[:, [i-1 for i in DSS_OVERLOAD]],
 }
 
 for name, items in scales.items():
