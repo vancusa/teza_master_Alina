@@ -49,18 +49,20 @@ dss_cols  = df.columns[22:46].tolist()   # 24 items
 dass_items = df[dass_cols].apply(pd.to_numeric, errors='coerce')
 dss_items  = df[dss_cols].apply(pd.to_numeric, errors='coerce')
 
-# Use pre-computed totals if available, else compute
-if 'Score1' in df.columns and 'Score 2' in df.columns:
-    df['DASS_total'] = pd.to_numeric(df['Score1'], errors='coerce')
-    df['DSS_total']  = pd.to_numeric(df['Score 2'], errors='coerce')
-else:
-    df['DASS_total'] = dass_items.sum(axis=1)
-    df['DSS_total']  = dss_items.sum(axis=1)
-
 dass_item_list = dass_items.columns.tolist()
 dss_item_list  = dss_items.columns.tolist()
 
+# DASS responses in this form are coded 1–4.
+# Convert to standard DASS item scoring (0–3) so totals/subscales are coherent,
+# including the radar normalization in Figure 5.
 dass_items_adj = dass_items - 1  # convert 1–4 → 0–3
+
+# Use adjusted DASS items for DASS totals; keep DSS totals from provided score if available.
+df['DASS_total'] = dass_items_adj.sum(axis=1)
+if 'Score 2' in df.columns:
+    df['DSS_total'] = pd.to_numeric(df['Score 2'], errors='coerce')
+else:
+    df['DSS_total'] = dss_items.sum(axis=1)
 
 df['DASS_stress']     = dass_items_adj[[dass_item_list[i-1] for i in DASS_STRESS]].sum(axis=1)
 df['DASS_anxiety']    = dass_items_adj[[dass_item_list[i-1] for i in DASS_ANXIETY]].sum(axis=1)
@@ -122,10 +124,10 @@ def cronbach_alpha(item_df):
     return (k / (k - 1)) * (1 - item_vars.sum() / total_var)
 
 scales = {
-    'DASS-21 Total':    dass_items,
-    'DASS Stress':      dass_items.iloc[:, [i-1 for i in DASS_STRESS]],
-    'DASS Anxiety':     dass_items.iloc[:, [i-1 for i in DASS_ANXIETY]],
-    'DASS Depression':  dass_items.iloc[:, [i-1 for i in DASS_DEPRESSION]],
+    'DASS-21 Total':    dass_items_adj,
+    'DASS Stress':      dass_items_adj.iloc[:, [i-1 for i in DASS_STRESS]],
+    'DASS Anxiety':     dass_items_adj.iloc[:, [i-1 for i in DASS_ANXIETY]],
+    'DASS Depression':  dass_items_adj.iloc[:, [i-1 for i in DASS_DEPRESSION]],
     'DSS-24 Total':     dss_items,
     'DSS Availability': dss_items.iloc[:, [i-1 for i in DSS_AVAILABILITY]],
     'DSS FOMO':         dss_items.iloc[:, [i-1 for i in DSS_FOMO]],
@@ -255,7 +257,8 @@ print("\n[Saved] fig1_distributions.png")
 fig, ax = plt.subplots(figsize=(6, 5))
 sns.regplot(data=df, x='DSS_total', y='DASS_total', ax=ax,
             scatter_kws={'alpha': 0.6}, line_kws={'color': 'red'})
-r, p = stats.spearmanr(df['DSS_total'].dropna(), df['DASS_total'].dropna())
+valid_total = df[['DSS_total', 'DASS_total']].dropna()
+r, p = stats.spearmanr(valid_total['DSS_total'], valid_total['DASS_total'])
 ax.set_title(f'DASS-21 vs DSS-24  (ρ={r:.3f}, p={p:.4f})')
 ax.set_xlabel('DSS-24 Total Score')
 ax.set_ylabel('DASS-21 Total Score')
