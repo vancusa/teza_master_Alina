@@ -1,102 +1,104 @@
-============================================================
-1. DESCRIPTIVE STATISTICS
-============================================================
-                   Mean     SD  Median   Min    Max
-DASS_total        23.66  12.87    23.0   2.0   53.0
-DASS_depression    7.55   5.13     7.0   0.0   20.0
-DASS_anxiety       7.10   5.58     5.0   0.0   21.0
-DASS_stress        9.00   4.08     9.0   2.0   20.0
-DSS_total         59.86  20.63    58.0  24.0  103.0
-DSS_availability  10.72   6.39     9.0   0.0   25.0
-DSS_fomo           5.97   3.49     6.0   0.0   15.0
-DSS_approval       8.55   6.14     8.0   0.0   24.0
-DSS_overload      10.62   7.88     9.0   0.0   28.0
 
-Time block distribution:
-time_block
-Afternoon (12–17)    12
-Morning (5–12)        9
-Evening (17–21)       5
-Night (21–5)          3
+========================================================================
+DESCRIPTIVE STATISTICS
+========================================================================
+                             N    Mean     SD  Median        IQR  Min   Max   Skew   Kurt
+Timepoint Scale                                                                          
+Before    DASS_Stress       29  12.069  3.644    12.0  10.0–15.0  6.0  21.0  0.373 -0.061
+          DASS_Anxiety      29  10.069  5.099     9.0   6.0–14.0  3.0  21.0  0.639 -0.481
+          DASS_Depression   29  11.138  4.696    11.0   7.0–13.0  5.0  21.0  0.558 -0.494
+          DSS_Availability  29  13.931  5.688    14.0  10.0–18.0  4.0  25.0  0.147 -0.754
+          DSS_FOMO          29   8.241  3.366     8.0   6.0–10.0  2.0  15.0 -0.273 -0.566
+          DSS_Approval      29  11.000  5.843    10.0   7.0–13.0  3.0  24.0  0.620 -0.174
+          DSS_Overload      29  13.483  7.385    12.0   7.0–17.0  3.0  28.0  0.559 -0.646
+After     DASS_Stress       29   9.000  4.080     9.0   7.0–11.0  2.0  20.0  0.766  0.824
+          DASS_Anxiety      29   7.103  5.583     5.0   3.0–11.0  0.0  21.0  0.911  0.337
+          DASS_Depression   29   7.552  5.131     7.0    4.0–9.0  0.0  20.0  0.928  0.247
+          DSS_Availability  29  10.724  6.391     9.0   6.0–14.0  0.0  25.0  0.560 -0.293
+          DSS_FOMO          29   5.966  3.490     6.0    4.0–8.0  0.0  15.0  0.193  0.391
+          DSS_Approval      29   8.552  6.145     8.0   5.0–11.0  0.0  24.0  0.704  0.235
+          DSS_Overload      29  10.621  7.876     9.0   4.0–13.0  0.0  28.0  0.719 -0.402
 
-============================================================
-2. INTERNAL CONSISTENCY (Cronbach's α)
-============================================================
-  DASS-21 Total          α = 0.929  (excellent)
-  DASS Stress            α = 0.749  (acceptable)
-  DASS Anxiety           α = 0.908  (excellent)
-  DASS Depression        α = 0.893  (good)
-  DSS-24 Total           α = 0.947  (excellent)
-  DSS Availability       α = 0.842  (good)
-  DSS FOMO               α = 0.814  (good)
-  DSS Approval           α = 0.889  (good)
-  DSS Overload           α = 0.910  (excellent)
+========================================================================
+INTERNAL CONSISTENCY (Cronbach's α)
+========================================================================
+                  α Before Interpretation  α After Interpretation.1
+Scale                                                              
+DASS Stress          0.640   questionable    0.749       acceptable
+DASS Anxiety         0.848           good    0.908        excellent
+DASS Depression      0.840           good    0.893             good
+DASS-21 Total        0.888           good    0.929        excellent
+DSS Availability     0.797     acceptable    0.842             good
+DSS FOMO             0.708     acceptable    0.814             good
+DSS Approval         0.839           good    0.889             good
+DSS Overload         0.863           good    0.910        excellent
+DSS-24 Total         0.926      excellent    0.947        excellent
 
-============================================================
-3. NORMALITY (Shapiro-Wilk, α=0.05)
-============================================================
-  DASS_total       W=0.971, p=0.5941  → Normal
-  DSS_total        W=0.947, p=0.1538  → Normal
+========================================================================
+NORMALITY (Shapiro-Wilk, α=0.05)
+========================================================================
+                             N       W  p-value      Result
+Timepoint Scale                                            
+Before    DASS_Stress       29  0.9724   0.6274      Normal
+          DASS_Anxiety      29  0.9281   0.0491  Non-normal
+          DASS_Depression   29  0.9279   0.0485  Non-normal
+          DSS_Availability  29  0.9773   0.7658      Normal
+          DSS_FOMO          29  0.9556   0.2547      Normal
+          DSS_Approval      29  0.9393   0.0964      Normal
+          DSS_Overload      29  0.9272   0.0465  Non-normal
+After     DASS_Stress       29  0.9531   0.2195      Normal
+          DASS_Anxiety      29  0.9113   0.0185  Non-normal
+          DASS_Depression   29  0.9062   0.0138  Non-normal
+          DSS_Availability  29  0.9522   0.2086      Normal
+          DSS_FOMO          29  0.9643   0.4163      Normal
+          DSS_Approval      29  0.9439   0.1270      Normal
+          DSS_Overload      29  0.9174   0.0262  Non-normal
 
-============================================================
-4. TIME-OF-DAY CORRELATION (circular statistics)
-============================================================
-  [Time is circular: midnight wraps around, so we use
-   sine/cosine components of the 24h cycle]
+[Saved] fig01_distributions.png
 
-  Scale                   rho_sin    p_sin  rho_cos    p_cos
-  ---------------------- -------- -------- -------- --------
-  DASS_total               -0.028   0.8859     -0.239   0.2119
-  DASS_depression          -0.083   0.6675     -0.140   0.4702
-  DASS_anxiety             -0.110   0.5708     -0.250   0.1905
-  DASS_stress              -0.028   0.8872     -0.246   0.1986
-  DSS_total                -0.146   0.4493     -0.167   0.3876
-  DSS_availability          0.001   0.9970     -0.219   0.2544
-  DSS_fomo                 -0.368   0.0493 *   -0.154   0.4251
-  DSS_approval             -0.179   0.3529     -0.096   0.6186
-  DSS_overload             -0.044   0.8195     -0.112   0.5623
+========================================================================
+DASS ↔ DSS CORRELATIONS (Spearman)
+========================================================================
 
+  Before (n=29):
+                           Availability           FOMO       Approval       Overload
+  ----------------------------------------------------------------------------------
+                  Stress   0.540*(p=0.002)   0.591*(p=0.001)   0.497*(p=0.006)   0.671*(p=0.000)
+                 Anxiety   0.625*(p=0.000)   0.648*(p=0.000)   0.378*(p=0.043)   0.476*(p=0.009)
+              Depression   0.559*(p=0.002)   0.466*(p=0.011)   0.192 (p=0.319)   0.339 (p=0.072)
   * p < 0.05
 
-============================================================
-5. SCORE BY TIME BLOCK (Kruskal-Wallis)
-============================================================
-
-  DASS_total:
-    Kruskal-Wallis H=0.642, p=0.8867
-    Afternoon (12–17)      n=12  median=25.0  IQR=18.5–30.2
-    Evening (17–21)        n=5  median=17.0  IQR=17.0–24.0
-    Morning (5–12)         n=9  median=23.0  IQR=9.0–35.0
-    Night (21–5)           n=3  median=18.0  IQR=15.0–24.5
-
-  DSS_total:
-    Kruskal-Wallis H=0.783, p=0.8536
-    Afternoon (12–17)      n=12  median=61.0  IQR=53.2–66.8
-    Evening (17–21)        n=5  median=47.0  IQR=46.0–66.0
-    Morning (5–12)         n=9  median=48.0  IQR=40.0–67.0
-    Night (21–5)           n=3  median=53.0  IQR=50.5–73.0
-
-============================================================
-6. DASS-21 ↔ DSS-24 CORRELATIONS (Spearman)
-============================================================
-
-                               DSS-total  DSS-availability        DSS-fomo    DSS-approval    DSS-overload
-  DASS-total               0.644* (p=0.000)   0.668* (p=0.000)   0.578* (p=0.001)   0.372* (p=0.047)   0.540* (p=0.003)
-  DASS-depression          0.502* (p=0.005)   0.590* (p=0.001)   0.493* (p=0.007)   0.271  (p=0.155)   0.337  (p=0.074)
-  DASS-anxiety             0.647* (p=0.000)   0.631* (p=0.000)   0.647* (p=0.000)   0.392* (p=0.036)   0.506* (p=0.005)
-  DASS-stress              0.693* (p=0.000)   0.651* (p=0.000)   0.544* (p=0.002)   0.468* (p=0.011)   0.689* (p=0.000)
-
+  After (n=29):
+                           Availability           FOMO       Approval       Overload
+  ----------------------------------------------------------------------------------
+                  Stress   0.651*(p=0.000)   0.544*(p=0.002)   0.468*(p=0.011)   0.689*(p=0.000)
+                 Anxiety   0.631*(p=0.000)   0.647*(p=0.000)   0.392*(p=0.036)   0.506*(p=0.005)
+              Depression   0.590*(p=0.001)   0.493*(p=0.007)   0.271 (p=0.155)   0.337 (p=0.074)
   * p < 0.05
+[Saved] fig02_correlation_heatmaps.png
+[Saved] fig03_scatter_dass_dss_before.png
+[Saved] fig04_scatter_dass_dss_after.png
+[Saved] fig05_scatter_dass_before_after.png
+[Saved] fig06_scatter_dss_before_after.png
+[Saved] fig07_radar_dass_before_after.png
+[Saved] fig08_radar_dss_before_after.png
+[Saved] fig09_radar_all_participants_before.png
+[Saved] fig10_radar_all_participants_after.png
 
-============================================================
-7. OUTLIER DETECTION (Z-score |z| > 2.5 on either scale)
-============================================================
-  No outliers detected.
+========================================================================
+BEFORE vs AFTER — WILCOXON SIGNED-RANK TEST (paired, n=29)
+========================================================================
+                   n  Median Before  Median After % Δ Median  Mean Before  Mean After % Δ Mean    W  p-value Sig.  Effect r
+Scale                                                                                                                      
+DASS_Stress       29           12.0           9.0     -25.0%        12.07        9.00   -25.4%  0.0      0.0   **     0.879
+DASS_Anxiety      29            9.0           5.0     -44.4%        10.07        7.10   -29.5%  0.0      0.0   **     0.865
+DASS_Depression   29           11.0           7.0     -36.4%        11.14        7.55   -32.2%  0.0      0.0   **     0.879
+DSS_Availability  29           14.0           9.0     -35.7%        13.93       10.72   -23.0%  0.0      0.0   **     0.848
+DSS_FOMO          29            8.0           6.0     -25.0%         8.24        5.97   -27.6%  0.0      0.0   **     0.869
+DSS_Approval      29           10.0           8.0     -20.0%        11.00        8.55   -22.3%  0.0      0.0   **     0.854
+DSS_Overload      29           12.0           9.0     -25.0%        13.48       10.62   -21.2%  0.0      0.0   **     0.865
 
-[Saved] fig1_distributions.png
-[Saved] fig2_scatter_dass_dss.png
-[Saved] fig3_subscale_heatmap.png
-[Saved] fig4_scores_by_time.png
-[Saved] fig5_radar_subscales.png
+  * p < 0.05  ** p < 0.01  n.s. = not significant
+  Effect size r (|Z|/√n): < 0.1 negligible, 0.1–0.3 small, 0.3–0.5 medium, > 0.5 large
 
-✓ Analysis complete.
+✓  Analysis complete. All figures saved to: output
